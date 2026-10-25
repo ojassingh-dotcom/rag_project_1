@@ -1,0 +1,33 @@
+1. it will take pdf(s) as input through frontend 
+
+2. then the basic chuncking and vectroization  will happen
+
+3. retrival of the chunks will be read by the llm and a ans will be generated and presented on the front end
+
+4.how will the front end will work with backend?
+
+
+
+5. what retrival , ingestion and vector store method will be used?
+    -for retrival combination of bm25 word search and simple simmilarity serach 
+    -for injestion  semantic chunking  and for vectroization cosine algo
+    - for vector store - chromadb
+
+
+6. model to follow 
+
+rag_project/
+├── models/
+│   ├── document_loader.py     # load_documents()
+│   ├── chunker.py              # split_documents()
+│   ├── embedder.py             # embedding model wrapper
+│   ├── vector_store.py         # Chroma create/query logic
+│   └── retriever.py            # BM25 + RRF fusion logic
+├── controllers/
+│   └── ingestion_controller.py # orchestrates load → chunk → embed → store
+│   └── query_controller.py     # orchestrates embed query → retrieve → fuse
+├── views/
+│   └── console_view.py         # all print()/formatting logic
+├── docs/                        # your source .txt files
+├── dnb/chroma_db/               # persisted vector store
+└── main.py                      # entry point, wires everything together
